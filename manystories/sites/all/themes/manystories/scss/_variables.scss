@@ -1,0 +1,60 @@
+// Singularity settings
+// Symmetric grid with fluid gutters, 1/2 gutter on each side of a column
+@include add-grid(12);
+@include add-gutter(1/4);
+@include add-gutter-style('split');
+
+// Colors
+$body_bg: #eee;
+$header_bg: #fff;
+$title_bg: #fbfbfb;
+$header_link: #000;
+
+$navigation_bg: #fff;
+$sidebar_bg: rgba(203, 188, 163, 0.5);
+$footer_bg: #fff;
+
+$text_color: #000;
+$story_color: #55636B;
+$navigation_color: #000;
+$link_color: #0074b9;
+
+$facebook_color: #3b5998;
+$twitter_color: #1FAFD9;
+$pinterest_color: #CC2127;
+$googleplus_color: #DB4936;
+
+$logo_blue: #0074b9;
+$logo_light_blue: #1494DF;
+$logo_cyan: #4ABEE9; // very light blue
+$logo_purple: #d4357f;
+$logo_yellow: #f4b20e;
+$logo_red: #e45c26;
+$logo_magenta: #e02d4a;
+
+$site_red: $logo_magenta;
+
+//Array("#0074b9","#1494DF", "#d4357f", "#f4b20e", "#e45c26", "#e02d4a");
+
+// Sizes
+$font_size: 14px;
+$header_height: 180px;
+$bottom_height: 50px;
+$button_height: 50px;
+$small_size: 12px;
+$max_width: 100%;
+$border_radius: 5px;
+$border_radius_small: 3px;
+
+$clean_height: $header_height + $bottom_height;
+
+// Breakpoints
+$breakpoint_footer1: 1200px;
+$breakpoint_3col: 1100px;
+$breakpoint_2col: 900px;
+$breakpoint_1col: 650px;
+
+// Typography
+$open_sans: 'Open Sans', sans-serif;
+$cousine: Cousine, monospace;
+$roboto_slab: 'Roboto Slab', serif;

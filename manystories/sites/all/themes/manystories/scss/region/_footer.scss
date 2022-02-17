@@ -1,0 +1,290 @@
+.region-footer {
+  @include full-width;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  background: $footer_bg;
+  height: $bottom_height;
+  border-bottom: 1px solid #ddd;
+  z-index: 50;
+  .block {
+    @include inline-block;
+  }
+}
+
+.admin-menu {
+  .region-footer {
+    margin-top: 20px;
+  }
+}
+
+.region-footer-left,
+.region-footer-right {
+  @include inline-block;
+  background: $footer_bg;
+}
+
+.region-footer-right {
+  float: right;
+}
+
+.social-media-links {
+  li {
+    @extend .helpful-icon;
+    background: none;
+    img {
+      padding: 10px 0;
+    }
+  }
+}
+
+.block-social-media-links .horizontal li,
+.pane-social-media-link-widget .horizontal li {
+  display: table-cell;
+  text-align: center;
+  padding: 0;
+  text-indent: 0;
+}
+
+.block-block-1 {
+  padding: 10px 0;
+}
+
+.block-block-2 {
+  .block-content {
+    display: table;
+  }
+}
+
+.block-views-count-stories-block {
+  .view-header {
+    @extend .helpful-icon;
+    text-indent: 0 !important;
+    text-transform: uppercase;
+    width: auto !important;
+    min-width: 50px;
+    font-size: 2em;
+    font-weight: 600;
+    padding: 0 10px;
+    border-left: 1px solid #ddd;
+    a {
+      color: $logo_magenta;
+      width: auto !important;
+    }
+  }
+  .views-row {
+    display: none;
+    a {
+      display: block;
+      height: 100%;
+      color: transparent;
+    }
+  }
+}
+
+.block-blockify-blockify-page-title {
+  float: left;
+  max-width: 400px;
+  &.js-absolute-title-active {
+    max-width: 100% !important;
+    position: absolute;
+    background: #fff;
+    z-index: 2;
+    cursor: ew-resize;
+  }
+  .h1 {
+    @include opacity(0.8);
+    margin: 0;
+    padding: 18px 10px;
+    font-family: Cousine, monospace;
+    font-size: 1.4em;
+    letter-spacing: -1.2px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.block-locale-language {
+  //@include grid-span(4,5);
+  li {
+    @include inline-block;
+  }
+}
+
+#lang-dropdown-select-language {
+  width: auto !important;
+  max-width: 100px;
+  height: 50px;
+  background: #fff;
+  border: 0;
+}
+
+.js-select-language-label {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.helpful-icon {
+  display: table-cell;
+  vertical-align: middle;
+  width: $bottom_height;
+  max-width: $bottom_height;
+  height: $bottom_height;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-right: 1px solid #ddd;
+  text-indent: -9999px;
+  overflow: hidden;
+  text-align: center;
+  a {
+    display: block;
+    width: $bottom_height;
+    height: $bottom_height;
+    line-height: $bottom_height;
+  }
+  &:last-child {
+    border-right: 0;
+  }
+  &.icon-home {
+    background-image: url(../images/icons/icon_home.png);
+  }
+  &.icon-bookmarklet {
+    background-image: url(../images/icons/icon_bookmarklet.png);
+    a {
+      cursor: move;
+    }
+  }
+  &.icon-open-story {
+    background-image: url(../images/icons/icon_info.png);
+  }
+  &.icon-close-shortcuts,
+  &.icon-close-story {
+    background-image: url(../images/icons/icon_close.png);
+  }
+  &.icon-add-story {
+    background-image: url(../images/icons/icon_add.png);
+  }
+  &.icon-next {
+    background-image: url(../images/icons/icon_right.png);
+  }
+  &.icon-previous {
+    background-image: url(../images/icons/icon_left.png);
+  }
+  &.icon-search {
+    background-image: url(../images/icons/icon_search.png);
+  }
+  &.icon-user {
+    background-image: url(../images/icons/icon_user.png);
+  }
+  &.icon-menu {
+    background-image: url(../images/icons/icon_menu.png);
+  }
+  &.icon-menu-footer {
+    display: none;
+    background-image: url(../images/icons/icon_up.png);
+  }
+  &.icon-random {
+    background-image: url(../images/icons/icon_random.png);
+  }
+}
+
+.not-logged-in .icon-user {
+  background-image: url(../images/icons/icon_lock.png);
+}
+
+.js-active-search .icon-search {
+  background-color: $sidebar_bg;
+}
+
+.js-active-footer-menu.icon-menu-footer {
+  background-image: url(../images/icons/icon_down.png);
+}
+
+@media (max-width: $breakpoint_footer1) {
+  .region-footer {
+    .block-blockify-blockify-page-title {
+      max-width: 50px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint_2col) {
+  .region-footer {
+    .region-footer-left {
+      width: 100%;
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: $bottom_height;
+      height: $bottom_height;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      display: none;
+    }
+    .region-footer-right {
+      width: 100%;
+      display: block;
+      .block {
+        float: right;
+      }
+    }
+    .icon-menu-footer {
+      display: table-cell;
+    }
+  }
+}
+
+@media (min-width: $breakpoint_2col) {
+  .region-footer-left {
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: $breakpoint_1col) {
+  .helpful-icon.icon-previous,
+  .helpful-icon.icon-next {
+    position: fixed;
+    top: 50%;
+    right: -12px;
+    background-position: left center;
+    background-color: #fff;
+    @include box-shadow(0 0 3px 0 #ddd);
+    &:hover,
+    &:focus {
+      @include box-shadow(0 0 10px 2px #ddd);
+    }
+  }
+  .helpful-icon.icon-previous {
+    left: -12px;
+    background-position: right center;
+  }
+  .helpful-icon.icon-bookmarklet {
+    display: none;
+  }
+  .icon-menu,
+  .icon-search,
+  .icon-user,
+  .icon-random,
+  .icon-home,
+  .icon-add-story,
+  .icon-menu-footer,
+  .icon-bookmarklet,
+  .icon-open-story,
+  .icon-close-story {
+    background-image: none !important;
+    text-overflow: ellipsis;
+    text-transform: lowercase;
+    font-size: 0.9em;
+    word-wrap: inherit;
+    text-indent: initial;
+  }
+  span.icon-close-story,
+  span.icon-close-shortcuts {
+    background-image: url(../images/icons/icon_close.png) !important;
+  }
+}

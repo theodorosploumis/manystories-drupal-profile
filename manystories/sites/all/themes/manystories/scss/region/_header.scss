@@ -1,0 +1,120 @@
+.header-region {
+  @include transition(all 0.5s ease-out);
+  @extend %clearfix;
+  @include full-width;
+  font-size: 1.5em;
+  font-family: $cousine;
+  line-height: 150%;
+  //font-weight: 600;
+  //text-transform: uppercase;
+  position: fixed;
+  top: 0;
+  background-color: $navigation_bg;
+  //background-image: url(../images/arrow_down.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  //height: $header_height;
+  z-index: 40;
+  color: $navigation_color;
+  @include box-shadow(0 -14px 30px 5px #000);
+  overflow-x: hidden;
+  padding-bottom: 40px;
+  .menu li {
+    list-style-type: none;
+    @include float-left;
+    width: 50%;
+  }
+}
+
+.admin-menu .header-region {
+  top: 20px;
+}
+
+.admin-menu.js-opened-header .header-region,
+.js-opened-header .header-region {
+  top: $bottom_height !important;
+  background-image: url(../images/arrow_up.png);
+}
+
+.js-close-action {
+  @include thumbnail;
+  z-index: 30;
+}
+
+.js-opened-header .js-close-action {
+  display: block;
+}
+
+.block-views-taxonomy-block {
+  @include grid-span(5, 1);
+  padding: 20px;
+  text-align: right;
+}
+
+.block-system-main-menu {
+  @include grid-span(5, 8);
+  padding: 20px;
+  text-align: left;
+}
+
+.block-blockify-blockify-logo {
+  @include grid-span(2, 6);
+  text-align: center;
+  position: relative;
+}
+
+.social-facebook {
+  @include social-icon('facebook.png');
+}
+
+.social-twitter {
+  @include social-icon('twitter.png');
+}
+
+.social-youtube {
+  @include social-icon('youtube.png');
+}
+
+.social-pinterest {
+  @include social-icon('pinterest.png');
+}
+
+.social-googleplus {
+  @include social-icon('googleplus.png');
+}
+
+@media (max-width: $breakpoint_2col) {
+  .header-region .menu li {
+    list-style-type: none;
+    float: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: $breakpoint_1col) {
+  body.js-opened-header {
+    overflow: hidden;
+  }
+  .header-region {
+    position: fixed;
+    height: 100%;
+    .block {
+      @include grid-span(12, 1);
+      text-align: left;
+      li {
+        margin-bottom: 10px;
+        a {
+          display: block;
+          background: $sidebar_bg;
+          padding: 4px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint_1col) {
+  .block-blockify-blockify-logo {
+    padding: 1em 0;
+  }
+}

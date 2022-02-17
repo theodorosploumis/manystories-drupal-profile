@@ -1,0 +1,135 @@
+.page-hybridauth,
+#user-login-form,
+.page-toboggan,
+.page-user:not(.page-user-stories) {
+  #main-content {
+    @include content-card;
+    background: #fff;
+  }
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    //color: $sidebar_bg;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea {
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: $border_radius_small;
+    width: 100%;
+  }
+  input[type="submit"] {
+    @include button-style;
+    margin-right: 10px;
+    &:last-item {
+      margin-right: 0;
+    }
+  }
+  .field-name-field-terms-of-use {
+    margin-bottom: 20px;
+  }
+  .form-actions,
+  .form-item,
+  .hybridauth-widget-wrapper {
+    margin-bottom: 30px;
+  }
+}
+
+.user-profile {
+  h1 {
+    @include blue-header;
+  }
+  > h3 {
+    display: none;
+  }
+}
+
+.block-views-user-stories-block {
+  font-size: 1.2em;
+  h2 {
+    padding: 10px 0;
+    margin: 1em 0;
+    font-family: $cousine;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 400;
+  }
+  ul li.views-row {
+    margin: 0 0 1em 0;
+  }
+}
+
+.confirm-parent,
+.password-parent {
+  clear: left;
+  width: 100%;
+}
+
+label[for='edit-picture-delete'],
+label[for='edit-terms-of-use'],
+label[for='edit-field-terms-of-use-und'] {
+  a {
+    color: #000;
+  }
+}
+
+label[for='edit-user-cancel-method'] {
+  font-size: 1.2em;
+  margin-bottom: 2em !important;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.form-item-user-cancel-method,
+.form-item-picture-delete,
+.form-item-terms-of-use,
+.form-item-roles {
+  @extend %large-checkbox;
+}
+
+#user-login-form {
+  @include content-card;
+}
+
+.hybridauth-widget-wrapper {
+  margin-top: 20px;
+  h3 {
+    margin-bottom: 20px;
+  }
+}
+
+.primary {
+  //margin-bottom: 20px;
+  li {
+    @include inline-block;
+    margin: 10px 0;
+    border-right: 2px solid transparent;
+    a {
+      background: $logo_blue;
+      color: #fff;
+      padding: 8px;
+      display: block;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      &.active,
+      &:hover,
+      &:focus {
+        border-bottom-color: $logo_purple;
+      }
+    }
+  }
+}
+
+.page-node .primary {
+  margin: 0;
+}
+
+@media (max-width: $breakpoint_1col) {
+  .primary li {
+    display: block;
+  }
+}

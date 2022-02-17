@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Provides a GeoRSS field formatter for geofields and geolocation fields.
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function rss_georss_field_formatter_info() {
+  return array(
+    'rss_georss_point' => array(
+      'label' => t('GeoRSS point'),
+      'field types' => array('geofield', 'geolocation_latlng'),
+    ),
+    'rss_georss_box' => array(
+      'label' => t('GeoRSS bounding box'),
+      'field types' => array('geofield'),
+    ),
+    'rss_georss_geometry' => array(
+      'label' => t('GeoRSS geometry'),
+      'field types' => array('geofield'),
+    ),
+    'rss_georss_featureName' => array(
+      'label' => t('GeoRSS featureName'),
+      'field types' => array('text'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function rss_georss_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $entity->rss_namespaces['xmlns:georss'] = 'http://www.georss.org/georss';
+  switch ($display['type']) {
+    case 'rss_georss_point':
+      foreach ($items as $item) {
+        $entity->rss_elements[] = array(
+          'key' => 'georss:point',
+          'value' => $item['lat'] . ' ' . (isset($item['lon']) ? $item['lon'] : $item['lng']),
+        );
+      }
+      break;
+    case 'rss_georss_box':
+      foreach ($items as $item) {
+        $entity->rss_elements[] = array(
+          'key' => 'georss:box',
+          'value' => "{$item['bottom']} {$item['right']} {$item['top']} {$item['left']}",
+        );
+      }
+      break;
+    case 'rss_georss_geometry':
+      $geometries = array('point' => 'point', 'linestring' => 'line', 'polygon' => 'polygon');
+      geofield_load_geophp();
+      if (class_exists('GeoRSS')) {
+        foreach ($items as $item) {
+          if (isset($geometries[$item['geo_type']])) {
+            // Strip off the XML tags that geoPHP outputs.
+            preg_match('/>(.*)</', geoPHP::load($item['wkt'], 'wkt')->out('georss', 'georss'), $matches);
+            $entity->rss_elements[] = array(
+              'key' => 'georss:' . $geometries[$item['geo_type']],
+              'value' => $matches[1],
+            );
+          }
+        }
+      }
+      break;
+    case 'rss_georss_featureName':
+      foreach ($items as $item) {
+        $entity->rss_elements[] = array(
+          'key' => 'georss:featureName',
+          'value' => $item['value'],
+        );
+      }
+      break;
+  }
+  return $element;
+}

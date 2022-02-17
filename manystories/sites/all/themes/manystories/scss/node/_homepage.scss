@@ -1,0 +1,127 @@
+.node-type-homepage {
+  .page {
+    padding: $bottom_height 0 0;
+    margin: 0;
+  }
+}
+
+body {
+  &.node-type-homepage,
+  &.page-stories,
+  &.page-taxonomy-term {
+    //background-image: url(../images/frontpage.jpg);
+    //background-image: url(https://farm6.staticflickr.com/5165/5343849352_48530a370d_b.jpg);
+    background-image: url(http://static1.akpool.de/images/cards/33/332646.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: top center;
+  }
+}
+
+.field-name-field-background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: -1;
+  img {
+    @include responsive-img;
+    width: 100%;
+  }
+}
+
+.node-homepage {
+  padding-bottom: 60px;
+  h1 {
+    font-weight: 400;
+  }
+  .field-name-field-tagline {
+    margin: 1em auto;
+    max-width: 600px;
+    text-align: center;
+    font-size: 2em;
+    font-family: $cousine;
+    font-weight: 400;
+  }
+
+  .field-name-field-buttons {
+    margin: 0 auto;
+    max-width: 600px;
+    overflow: hidden;
+    clear: both;
+    .field-item {
+      width: 29%;
+      margin: 0 2%;
+      float: left;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+      &.odd {
+        a {
+          background: $logo_purple;
+          color: #fff;
+        }
+      }
+      a {
+        display: block;
+        height: 100%;
+        color: $logo_blue;
+        background: #fff;
+        &:hover,
+        &:focus {
+          @include box-shadow(0 0 10px 0 #000);
+        }
+      }
+    }
+  }
+  .field-name-categories {
+    max-width: 600px;
+    margin: 2em auto;
+    overflow: hidden;
+    clear: both;
+    ul {
+      text-align: center;
+      li {
+        @include inline-block;
+        line-height: 2em;
+        margin: 1%;
+        background: rgba(0, 116, 185, 0.5);
+        padding: 0 5px;
+        &:hover,
+        &:focus {
+          background: $logo_blue;
+        }
+      }
+    }
+    a {
+      color: #fff;
+      font-size: 1.2em;
+    }
+  }
+}
+
+#logo,
+.front-logo {
+  @include opacity(0.3);
+}
+
+@media (max-width: $breakpoint_1col) {
+  .node-type-homepage {
+    h1 {
+      font-size: 1.3em;
+    }
+    .field-name-field-buttons .field-item {
+      width: 96%;
+      margin: 2px 2%;
+      float: none;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+    }
+  }
+}

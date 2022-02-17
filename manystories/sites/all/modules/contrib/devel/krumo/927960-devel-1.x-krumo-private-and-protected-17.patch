@@ -1,0 +1,54 @@
+diff --git a/krumo/class.krumo.php b/krumo/class.krumo.php
+index 70da0b9..b40046b 100755
+--- a/krumo/class.krumo.php
++++ b/krumo/class.krumo.php
+@@ -975,30 +975,27 @@ This is a list of all the values from the <code><b><?php echo realpath($ini_file
+ 
+   // keys ?
+   //
+-  $keys = ($_is_object)
+-    ? array_keys(get_object_vars($data))
+-    : array_keys($data);
+-
+-  // itterate
+-  //
+-  foreach($keys as $k) {
+-
+-    // skip marker
+-    //
+-    if ($k === $_recursion_marker) {
+-      continue;
++  if ($_is_object && get_class($data) != 'stdClass') {
++    $refl = new ReflectionClass($data);
++    foreach ($refl->getProperties() as $property) {
++      $k = $property->getName();
++      if ($k === $_recursion_marker) {
++        continue;
+       }
+-
+-    // get real value
+-    //
+-    if ($_is_object) {
+-      $v =& $data->$k;
+-      } else {
+-      $v =& $data[$k];
++      $property->setAccessible(TRUE);
++      $v = $property->getValue($data);
++      krumo::_dump($v, $k);
++    }
++  } else {
++    foreach($data as $k => &$v) {
++      // skip marker
++      //
++      if ($k === $_recursion_marker) {
++        continue;
+       }
+-
+-    krumo::_dump($v,$k);
+-    } ?>
++      krumo::_dump($v,$k);
++    }
++  } ?>
+   </ul>
+ </div>
+ <?php

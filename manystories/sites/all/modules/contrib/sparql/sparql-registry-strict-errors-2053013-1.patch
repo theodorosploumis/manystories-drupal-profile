@@ -1,0 +1,14 @@
+diff --git a/sparql_registry/sparql_registry.module b/sparql_registry/sparql_registry.module
+index 86f9bdf..609fb1a 100644
+--- a/sparql_registry/sparql_registry.module
++++ b/sparql_registry/sparql_registry.module
+@@ -130,7 +130,8 @@ function sparql_registry_load_by_uri($uri, $reset = FALSE) {
+ 
+   if (!empty($result)) {
+     // The endpoint is in a double nested array. Use reset to pull it out.
+-    $endpoint = reset(reset($result));
++    $inner_result = reset($result);
++    $endpoint = reset($inner_result);
+     $srid = $endpoint->srid;
+     $sparql_registry = sparql_registry_load_multiple(array($srid), array(), $reset);
+     return reset($sparql_registry);

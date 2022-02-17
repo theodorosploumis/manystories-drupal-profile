@@ -1,0 +1,13 @@
+name = Manystories REST
+description = REST for Stories using restful module.
+core = 7.x
+
+package = ManyStories
+
+dependencies[] = restful (>= 2.5)
+dependencies[] = uuid
+dependencies[] = manystories_core
+
+registry_autoload[] = PSR-0
+registry_autoload[] = PSR-4
+

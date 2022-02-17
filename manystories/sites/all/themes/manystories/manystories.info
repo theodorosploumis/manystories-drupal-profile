@@ -1,0 +1,123 @@
+name = Many Stories
+description = A theme for ManyStoriesOneHeart.gr website.
+core = 7.x
+base theme = mothership
+
+
+;-------------- R E G I O N S -------------
+;regions_hidden[] = im_a_hidden_but_visibel_for_a_module
+
+;-- Required Regions
+regions[page_top] = Page Top
+regions[content] = Content
+regions[page_bottom] = Page Bottom
+
+;-- Custom Regions
+regions[header] = Header
+regions[footer_left] = Footer Left
+regions[footer_right] = Footer Right
+regions[help] = Help
+regions[static] = Static
+
+;-------------- C S S -------------
+stylesheets[all][] = css/style.css
+
+;-------------- JS -------------
+;scripts[] = js/jquery.lettering-0.6.1.min.js
+scripts[] = js/mousetrap.min.js
+scripts[] = js/jquery.boxfit.min.js
+scripts[] = js/jquery.countTo.js
+scripts[] = js/script.js
+
+; ========================================
+; Settings
+; Thank to magic module!
+; ========================================
+
+settings[toggle_logo] = 1
+settings[toggle_name] = 0
+settings[toggle_slogan] = 0
+settings[toggle_node_user_picture] = 0
+settings[toggle_comment_user_picture] = 1
+settings[toggle_comment_user_verification] = 1
+settings[toggle_favicon] = 1
+settings[default_logo] = 1
+settings[default_favicon] = 1
+settings[mothership_poorthemers_helper] = 0
+settings[mothership_test] = 0
+settings[mothership_mediaquery_indicator] = 0
+settings[mothership_js_onefile] = 0
+settings[mothership_js_jquery_latest] = 0
+settings[mothership_js_jquerycdn] = 0
+settings[mothership_js_jquerycdn_version] = 0
+settings[mothership_respondjs] = 1
+settings[mothership_modernizr] = 0
+settings[mothership_selectivizr] = 0
+settings[mothership_css_onefile] = 0
+settings[mothership_css_reset] = 1
+settings[mothership_css_reset_html5] = 0
+settings[mothership_css_normalize] = 1
+settings[mothership_css_layout] = 0
+settings[mothership_css_default] = 0
+settings[mothership_css_mothershipstyles] = 0
+settings[mothership_classes_body_html] = 1
+settings[mothership_classes_body_loggedin] = 0
+settings[mothership_classes_body_front] = 0
+settings[mothership_classes_body_layout] = 0
+settings[mothership_classes_body_toolbar] = 0
+settings[mothership_classes_body_pagenode] = 0
+settings[mothership_classes_body_nodetype] = 0
+settings[mothership_classes_body_path] = 0
+settings[mothership_classes_body_path_first] = 0
+settings[mothership_classes_body_status] = 0
+settings[mothership_region_wrapper] = 1
+settings[mothership_classes_region] = 1
+settings[mothership_classes_block] = 0
+settings[mothership_classes_block_id] = 1
+settings[mothership_classes_block_id_as_class] = 1
+settings[mothership_classes_block_contentdiv] = 1
+settings[mothership_classes_node] = 0
+settings[mothership_classes_node_state] = 0
+settings[mothership_classes_node_id] = 0
+settings[mothership_classes_node_links_inline] = 0
+settings[mothership_classes_node_links_links] = 0
+settings[mothership_classes_field_field] = 0
+settings[mothership_classes_field_name] = 0
+settings[mothership_classes_field_type] = 0
+settings[mothership_classes_field_label] = 0
+settings[mothership_classes_form_container_wrapper] = 0
+settings[mothership_classes_form_container_type] = 0
+settings[mothership_classes_form_container_name] = 0
+settings[mothership_classes_form_container_widget] = 0
+settings[mothership_classes_form_container_id] = 0
+settings[mothership_classes_form_wrapper_formitem] = 0
+settings[mothership_classes_form_wrapper_formtype] = 0
+settings[mothership_classes_form_wrapper_formname] = 0
+settings[mothership_classes_form_label] = 1
+settings[mothership_classes_form_input] = 1
+settings[mothership_form_required] = 0
+settings[mothership_classes_form_description] = 0
+settings[mothership_classes_form_placeholder_label] = 0
+settings[mothership_classes_menu_items_mlid] = 0
+settings[mothership_classes_menu_wrapper] = 0
+settings[mothership_classes_menu_items_firstlast] = 1
+settings[mothership_classes_menu_items_active] = 0
+settings[mothership_classes_menu_collapsed] = 1
+settings[mothership_classes_menu_leaf] = 1
+settings[mothership_classes_view] = 1
+settings[mothership_classes_view_name] = 1
+settings[mothership_classes_view_view_id] = 0
+settings[mothership_classes_view_row] = 0
+settings[mothership_classes_view_row_count] = 1
+settings[mothership_classes_view_row_first_last] = 1
+settings[mothership_classes_view_row_rename] = 0
+settings[panels_seperator] = 1
+settings[mothership_classes_state] = 0
+settings[mothership_404] = 0
+settings[mothership_forum] = 0
+settings[mothership_frontpage_default_message] = 1
+settings[mothership_content_block_wrapper] = 1
+settings[mothership_goodies_login] = 0
+settings[mothership_mobile] = 1
+settings[mothership_viewport] = 0
+settings[mothership_viewport_maximumscale] = 1

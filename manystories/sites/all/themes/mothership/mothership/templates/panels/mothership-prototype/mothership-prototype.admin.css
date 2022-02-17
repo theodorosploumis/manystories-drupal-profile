@@ -1,0 +1,31 @@
+.panel-col-25 {
+  float: left;
+  width: 25%;
+}
+.panel-col-33 {
+  float: left;
+  width: 33%;
+}
+
+.panel-col-50 {
+  float: left;
+  width: 50%;
+}
+.panel-col-75 {
+  float: left;
+  width: 75%;
+}
+
+.panel-col-100 {
+  float: left;
+  width: 100%;
+}
+
+.panel-col-clear{
+  width: 100%;
+  clear: both;
+}
+
+.inside {
+  margin: .5em;
+}

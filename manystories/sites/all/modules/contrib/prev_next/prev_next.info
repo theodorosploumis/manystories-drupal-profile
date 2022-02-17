@@ -1,0 +1,11 @@
+name = Prev/Next
+description = Provides a high performance API for previous/next nodes for a given node.
+core = 7.x
+
+configure = admin/config/system/prev_next
+
+; Information added by Drupal.org packaging script on 2018-10-31
+version = "7.x-2.0-alpha1+3-dev"
+core = "7.x"
+project = "prev_next"
+datestamp = "1541003601"

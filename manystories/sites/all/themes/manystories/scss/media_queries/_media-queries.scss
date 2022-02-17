@@ -1,0 +1,108 @@
+@media print {
+  body {
+    background: #fff !important;
+  }
+  .page {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 0 10px;
+  }
+  .node-page.view-mode-full,
+  .node-story.view-mode-full,
+  .node-page.view-mode-teaser,
+  .node-story.view-mode-teaser {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    page-break-before: always;
+  }
+  .view-all-stories .view-row,
+  .view-taxonomy-term .views-row {
+    display: block;
+    width: 99%;
+    max-width: 100%;
+    margin: 0.5%;
+    padding: 0;
+    page-break-before: always;
+  }
+  .node-story {
+    .field a {
+      color: #16046B;
+      margin: 4px 0;
+      display: block;
+      padding: 5px;
+      background: #fff;
+    }
+     a.call-to-action {
+      background: #fff;
+      color: #16046B;
+      border: 2px solid #16046B;
+    }
+    h1,
+    h3 {
+      background: #fff;
+      color: #0074b9;
+      text-align: left;
+      margin: 10px 0;
+      padding: 0;
+      a {
+        color: #16046B;
+      }
+    }
+  }
+  .region-story-two {
+    background: #fff;
+  }
+  .region-story-three {
+    page-break-before: always;
+  }
+  .node-page h1 {
+    padding: 0;
+    background: #fff;
+    color: #0074b9;
+    text-align: left;
+  }
+  .js-story-underlay {
+    display: none !important;
+  }
+  .page-taxonomy-term nav.tabs,
+  .page-user nav.tabs,
+  .page-node nav.tabs {
+    display: none !important;
+  }
+  .header-region,
+  .region-footer {
+    position: relative;
+    @include box-shadow(none);
+    background: #fff;
+  }
+  .header-region {
+    top: 0 !important;
+    .block {
+      width: 50%;
+      margin: 0;
+      float: left;
+      text-align: left;
+    }
+    ul li,
+    .menu li {
+      float: none;
+      width: 100%;
+      text-align: left;
+    }
+  }
+  .region-footer {
+    .region-footer-left,
+    .region-footer-right {
+      display: block;
+      vertical-align: middle;
+      width: 100%;
+    }
+  }
+  // Homepage
+  .node-homepage .field-name-field-buttons .field-item.odd a {
+    background: #fff;
+    color: $logo_blue;
+  }
+}

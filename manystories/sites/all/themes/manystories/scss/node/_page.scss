@@ -1,0 +1,59 @@
+
+
+.field-block-nodes {
+  @extend %clearfix;
+}
+
+.node-page {
+  @include white-card;
+  .field {
+    margin-bottom: 1em;
+    overflow: hidden;
+  }
+  h1 {
+    @include blue-header;
+  }
+  h3 {
+    padding: 10px 0;
+    margin: 1em 0;
+    font-family: $cousine;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 400;
+  }
+  ul,
+  p {
+    font-size: 1.2em;
+    line-height: 140%;
+    color: #2B2B2B;
+    margin-bottom: 1em;
+  }
+  blockquote,
+  q {
+    padding: 10px;
+    background: $body_bg;
+  }
+  h4 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 1em 0;
+  }
+  code {
+    color: #fff;
+    background: $logo_light_blue;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 1em;
+    line-height: 130%;
+    display: block;
+  }
+  p > code {
+    background: transparent;
+    color: initial;
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    line-height: 1;
+    display: initial;
+  }
+}

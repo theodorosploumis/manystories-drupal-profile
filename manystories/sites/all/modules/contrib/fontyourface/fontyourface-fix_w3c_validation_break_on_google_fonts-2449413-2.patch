@@ -1,0 +1,13 @@
+diff --git a/modules/google_fonts_api/google_fonts_api.module b/modules/google_fonts_api/google_fonts_api.module
+index 8a34580..3b50389 100644
+--- a/modules/google_fonts_api/google_fonts_api.module
++++ b/modules/google_fonts_api/google_fonts_api.module
+@@ -116,7 +116,7 @@ function google_fonts_api_preprocess_html(&$vars) {
+           $base = 'https://fonts.googleapis.com/css?family=';
+         } // if
+
+-        $url = $base . implode('|', $families) . '&subset=' . implode(',', $all_subsets);
++        $url = $base . implode('%7C', $families) . '&subset=' . implode(',', $all_subsets);
+
+         fontyourface_add_css_in_preprocess($vars, $url, 'remote');
+

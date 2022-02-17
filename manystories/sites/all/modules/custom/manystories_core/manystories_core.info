@@ -1,0 +1,11 @@
+name = Manystories Core
+description = Basic module for Many Stories.
+core = 7.x
+package = ManyStories
+
+dependencies[] = hybridauth (>= 2.14)
+dependencies[] = restful (>= 2.5)
+dependencies[] = token (>= 1.6)
+dependencies[] = metatag
+
+configure = admin/config/system/manystories

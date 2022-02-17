@@ -1,0 +1,91 @@
+#views-exposed-form-all-stories-page {
+  max-width: 500px;
+  margin: 100px auto 20px auto;
+  position: relative;
+  label {
+    font-size: 2em;
+    text-align: center;
+    font-weight: 300;
+    position: absolute;
+    top: -70%;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+    color: #ddd;
+  }
+  .form-type-textfield {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#edit-search-wrapper {
+  float: none;
+  padding: 0;
+}
+
+#edit-search {
+  width: 100%;
+  font-size: 2em;
+  padding: 10px 110px 10px 10px;
+  border-radius: 3px;
+  border: 0;
+  background: white-opacity(0.8);
+  &:hover,
+  &:focus {
+    background: white-opacity(1);
+  }
+}
+
+#edit-submit-all-stories{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  margin: 0;
+  min-width: 100px;
+  max-width: 100px;
+  border-radius: 0 3px 3px 0;
+}
+
+span.js-icon-close-shortcuts,
+span.js-icon-close-search {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  border: 0;
+  display: initial !important;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width:$breakpoint_1col) {
+  #edit-search {
+    padding: 10px;
+  }
+  .views-exposed-form .views-exposed-widget {
+    float: none;
+    padding: 10px 0;
+  }
+  #views-exposed-form-all-stories-page {
+    padding: 0 20px;
+  }
+  #edit-submit-all-stories {
+    position: relative;
+    margin: 0;
+    min-width: 100px;
+    max-width: 100%;
+    border-radius: 0;
+    display: block;
+    width: 100%;
+    padding: 20px 10px;
+  }
+  #views-exposed-form-all-stories-page label {
+    position: relative;
+    margin-bottom: 1em;
+    display: block;
+  }
+  span.js-icon-close-shortcuts,
+  span.js-icon-close-search {
+    right: 0;
+  }
+}

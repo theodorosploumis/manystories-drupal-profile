@@ -1,0 +1,89 @@
+.region-wrapper-navigation {
+  @extend %clearfix;
+  @include full-width;
+  position: fixed;
+  top: 0;
+  background: $navigation_bg;
+  height: $header_height;
+  z-index: 40;
+  color: $navigation_color;
+  @include box-shadow(0 -14px 30px 5px #000);
+}
+
+.region-navigation {
+  margin: 0 auto;
+  max-width: $max-width;
+  .menu {
+    @include inline-block-list;
+  }
+  a {
+    color: $navigation_color;
+  }
+  .leaf {
+    margin: 0 14px 0 0;
+    text-transform: uppercase;
+    a {
+      padding: 45px 0 4px 0;
+      display: block;
+      border-bottom: 3px solid transparent;
+      &.active-trail,
+      &:active,
+      &.active,
+      &:focus,
+      &:hover {
+        border-bottom: 3px solid $site_red;
+      }
+    }
+  }
+}
+
+.admin-menu .region-navigation {
+  top: 20px;
+}
+
+#block-blockify-blockify-logo {
+  @include grid-span(3, 1);
+  padding-top: 15px;
+}
+
+#block-system-main-menu {
+  @include grid-span(6, 4);
+  height: 69px;
+}
+
+#block-menu-menu-social {
+  @include grid-span(3, 10);
+  text-align: right;
+  margin-top: 20px;
+  .menu {
+    text-align: right;
+  }
+  .leaf {
+    position: relative;
+    a,
+    a:hover,
+    a:focus {
+      border-bottom: none;
+    }
+  }
+}
+
+.social-facebook {
+  @include social-icon('facebook.png');
+}
+
+.social-twitter {
+  @include social-icon('twitter.png');
+}
+
+.social-youtube {
+  @include social-icon('youtube.png');
+}
+
+.social-pinterest {
+  @include social-icon('pinterest.png');
+}
+
+.social-googleplus {
+  @include social-icon('googleplus.png');
+}

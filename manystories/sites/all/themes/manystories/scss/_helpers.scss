@@ -1,0 +1,395 @@
+// Functions
+@function percent($target, $container) {
+  //@return ($target / $container) * 1400px;
+  @return ($target / $container) * 100%;
+}
+
+@function black-opacity($opacity) {
+  @return rgba(black, $opacity);
+}
+
+@function white-opacity($opacity) {
+  @return rgba(white, $opacity);
+}
+
+@function clean-height($height) {
+  @return calc(100% - #{$height});
+}
+
+// Mixins
+@mixin content-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: $border_radius_small;
+  max-width: 600px;
+  padding: 20px;
+  margin: 20px auto;
+  @include box-shadow(0 0 15px #ddd);
+}
+
+@mixin white-card {
+  background: #fff;
+  padding: 20px;
+  z-index: 30;
+  overflow: hidden;
+}
+
+@mixin blue-header {
+  padding: 20px;
+  background: $logo_blue;
+  color: #fff;
+  margin: 0 0 0.5em 0;
+  font-family: $cousine;
+  font-size: 3em;
+  border: none;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  a {
+    display: block;
+    color: #fff;
+  }
+}
+
+@mixin thumbnail {
+  background-color: black-opacity(0.7);
+  cursor: pointer;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: none;
+  top: 0;
+  color: #fff;
+  font-size: 3em;
+  text-align: center;
+}
+
+@mixin item-border {
+  border-bottom: 10px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 0;
+}
+
+@mixin input-text {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  border-radius: 3px;
+  @include box-shadow(0 0 10px 0);
+  max-width: 500px;
+}
+
+@mixin responsive-img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  width: auto \9; /* Old IE */
+}
+
+@mixin img-in-flexbox {
+  img {
+    @include responsive-img;
+    width: 100%;
+  }
+}
+
+@mixin full-width {
+  width: 100%;
+  left: 0;
+  clear: both;
+  display: block;
+}
+
+@mixin social-icon ($icon) {
+  background: url(../images/#{$icon}) no-repeat center center;
+  width: 24px;
+  height: 24px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  padding: 0 !important;
+  //margin: 40px 0;
+}
+
+@mixin button-style {
+  color: #fff;
+  padding: 0.5em;
+  text-transform: uppercase;
+  min-width: 150px;
+  display: inline-block;
+  @include transition(background 1s);
+  background: $logo_purple;
+  margin-top: 2em;
+  text-align: center;
+  border: none;
+  &:hover,
+  &:focus {
+    background: #000;
+    color: #fff;
+  }
+}
+
+@mixin flexbox-views ($width, $margin, $padding, $parent, $child, $nth-child:"", $nth-width:"") {
+  #{$parent} {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+  }
+  #{$parent} #{$child} {
+    @include inline-block;
+    @include flex(1 $width);
+
+    width: $width;
+    max-width: $width;
+    margin: $margin;
+    padding: $padding;
+    @if $nth-child != '' {
+      &:nth-child(#{$nth-child}) {
+        width: $nth-width;
+        @include flex(1 $nth-width);
+      }
+    }
+    img {
+      @include img-in-flexbox;
+    }
+  }
+}
+
+@mixin flexbox-sidebar ($parent, $child-left, $child-right, $width-left, $margin, $padding) {
+  #{$parent} {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+  }
+  #{$parent} #{$child-left} {
+    @include inline-block;
+    @include flex(0 $width-left);
+
+    width: $width-left;
+    max-width: $width-left;
+    margin: $margin;
+    padding: $padding;
+  }
+  $width-right: 100% - $width-left;
+  #{$parent} #{$child-right} {
+    @include inline-block;
+    @include flex(1 $width-right);
+
+    width: $width-right;
+    max-width: $width-right;
+    margin: $margin;
+    padding: $padding;
+  }
+}
+
+@mixin flexbox-sidebar-clear ($parent, $child-left, $child-right, $margin, $padding) {
+  #{$parent} {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+  }
+  #{$parent} #{$child-right},
+  #{$parent} #{$child-left} {
+    @include inline-block;
+    @include flex(0 100%);
+
+    width: 100%;
+    max-width: 100%;
+    margin: $margin;
+    padding: $padding;
+  }
+}
+
+// Full height flexbox
+@mixin flexbox-dynamic($margin, $parent, $child) {
+  #{$parent} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; // align items in Main Axis
+    align-items: stretch; // align items in Cross Axis
+    align-content: stretch; // Extra space in Cross Axis
+  }
+  #{$parent} #{$child} {
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; // align items in Main Axis
+    align-items: stretch; // align items in Cross Axis
+    align-content: stretch; // Extra space in Cross Axis
+    margin: $margin;
+  }
+}
+
+/* Classes */
+
+.js-hidden-element {
+  visibility: hidden;
+  opacity: 0;
+  width: 0 !important;
+  height: 0 !important;
+  border: none !important;
+  @include transition(visibility 0s, opacity 1.5s linear);
+}
+
+.page-node-edit {
+  &.js-overflow-hidden {
+    overflow: initial;
+  }
+}
+
+%clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+
+/* Random bg */
+@mixin image-bg($folder, $image) {
+  background: url($folder/$image);
+}
+
+@mixin random-bg($number: 40, $folder: '../images/patterns', $suffix: '.jpg') {
+  @for $i from 0 through $number {
+    .image-bg-#{$i} {
+      @include image-bg(#{$folder},abs#{$i}#{$suffix});
+    }
+  }
+}
+
+
+/* Custom checkboxes */
+// Check http://codepen.io/ipetepete/pen/ulqGe
+%large-checkbox {
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 1px; height:1px;
+    margin: -1px; padding: 0; border: 0;
+  }
+
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 1.5%;
+    width: auto;
+    min-width: 200px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding-right: 10px;
+      &:before {
+        content: "\A";
+        color: #ccc;
+        font-size: 32px;
+        line-height: 32px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        position:relative;
+        border-radius:5px;
+        background: #999;
+        height:32px;
+        width: 32px;
+        margin-right: 8px;
+        //text-shadow: 1px 1px 3px #333;
+        //@include box-shadow (1px 1px 0px #999, 0px 0px 1px #333 inset, 0 0 30px rgba(0,0,0,0.3) inset);
+        @include transition(all 0.6s ease-in-out);
+    }
+  }
+
+  input[type="radio"] + label {
+    &:before{
+      content: "●";
+      color: #ccc;
+      border-radius: 22px;
+      line-height: 24px;
+      background-color: #eee;
+    }
+  }
+
+  input[type="checkbox"]:checked + label,
+  input[type="radio"]:checked + label {
+    color: #fff;
+    background: #0099ff;
+    font-weight: 600;
+    //@include box-shadow(0 6px 12px -12px);
+    &:before{
+     content: "✓";
+      color: #00c4ff;
+      background: darken(#00c4ff, 10%);
+      @include transition(all 0.6s ease-in-out);
+      line-height: 32px;
+
+    }
+  }
+
+  input[type="radio"]:checked + label {
+    &:before{
+      content: "●";
+      color: #000 !important;
+      //@include text-shadow(0px 0px 13px #00c4ff);
+      line-height: 25px;
+    }
+  }
+}
+
+// Animations
+@keyframes heartbeat{
+  to {
+    transform: scale(1.2);
+  }
+}
+
+%heartbeat {
+  animation: heartbeat .4s infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes heartbeat-fast {
+  92% { transform: scale(1, 1);}
+  94% {  transform: scale(1.2, 1.2); }
+  96% {  transform: scale(1, 1); }
+  98% {  transform: scale(1.1, 1.1); }
+  100% { transform: scale(1, 1);}
+}
+
+%heartbeat-fast {
+  animation: heartbeat-fast 1s infinite;
+  transform-origin: center;
+}
+
+// Lettering effects
+@mixin lettering-style($radius, $size, $bg, $color) {
+  background: $bg;
+  border-radius: $radius;
+  letter-spacing: $size;
+  color: $color;
+  width: $size;
+  height: $size;
+}
+
+@mixin pebble-style($size, $background, $left, $bottom, $radius, $rotate) {
+  position: relative;
+  &:after{
+    display: block;
+    position: absolute;
+    background: $background;
+    content: " ";
+    width: $size;
+    height: $size;
+    bottom: $bottom;
+    left: $left;
+    border-radius: $radius;
+    @include transform(rotate($rotate));
+  }
+}

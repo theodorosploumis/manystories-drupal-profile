@@ -1,0 +1,20 @@
+site_name: ManyStories project
+repo_url: https://github.com/manystories/docs
+site_description: 'A Drupal project full of goodies such as linked data, open data, restful api, sparql endpoint and many more.'
+theme: readthedocs
+
+markdown_extensions:
+  - toc:
+      permalink: True
+
+pages:
+  - Index: 'index.md'
+  - About: 'about.md'
+  - FAQs: 'faqs.md'
+  - Media: 'media.md'
+  - Developers: 'developers.md'
+  - RESTful API: 'restapi.md'
+  - SPARQL Endpoint: 'sparql.md'
+  - Apps: 'apps.md'
+  - Terms of Use: 'legal.md'
+  - Install Drupal: 'install.md'

@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Module for providing Stories using the oEmbed specification
+ */
+
+/**
+ * Implement hook_ctools_plugin_directory().
+ */
+function manystories_oembed_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'oembed' && $plugin == 'providers') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Merges a result with some standard values.
+ *
+ * @param string $type
+ * @param array $result
+ */
+function _manystories_oembed_result($type, $props) {
+  $defaults = array(
+    'type' => $type,
+    'version' => '1.0',
+    'provider_name' => variable_get('site_name', ''),
+    'license' => variable_get('manystories_core_license', ''),
+  );
+  $result = array_merge($defaults, $props);
+  return $result;
+}

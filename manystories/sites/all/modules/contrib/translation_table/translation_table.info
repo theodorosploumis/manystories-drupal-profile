@@ -1,0 +1,13 @@
+name = Translation table
+description = UI for quick translation of dynamic strings.
+package = Multilingual - Internationalization
+core = 7.x
+dependencies[] = locale
+dependencies[] = i18n_string
+
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-1.0-beta1+6-dev"
+core = "7.x"
+project = "translation_table"
+datestamp = "1382147848"
+

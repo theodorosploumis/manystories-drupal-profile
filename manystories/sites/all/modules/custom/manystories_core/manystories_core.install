@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the manystories_core module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function manystories_core_unistall() {
+  db_delete('variable')
+    ->condition('name', 'manystories_core\_%', 'LIKE')
+    ->execute();
+}

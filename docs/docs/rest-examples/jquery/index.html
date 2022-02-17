@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>jQuery API Consumer example - ManyStoriesOneHeart.gr</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+
+<h1>Stories from ManyStoriesOneHeart.gr</h1>
+
+<div class="count-wrapper">
+  <label>Stories: </label><span class="count-value"></span>
+</div>
+<div class="stories-wrapper">
+  <ul class="story-list">
+  </ul>
+</div>
+
+<script>
+(function($){
+  $(document).ready(function () {
+    // The main api usr for Stories
+  	var $url = 'http://www.manystoriesoneheart.gr/api/stories';
+
+  	$.ajax({
+      type: 'GET',
+      url: $url,
+      success: function (results) {
+        //console.log(results);
+        $('.count-value').text(results.meta.count);
+        $.each(results.data, function(index, element) {
+          $(".story-list").append("<li><a href='"+element.attributes.html_display+"'>"+element.attributes.title+"</a></li>");
+        });
+      }
+  	});
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

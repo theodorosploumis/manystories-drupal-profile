@@ -1,0 +1,8 @@
+name = Custom oEmbed Provider for Many Stories
+description = Turns your site into a oEmbed provider with Stories
+package = ManyStories
+
+core = 7.x
+dependencies[] = oembedprovider
+dependencies[] = uuid
+

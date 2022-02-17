@@ -1,0 +1,149 @@
+<?php
+
+/**
+ * @file
+ * Contains the Menu pages, permissions and page callbacks for manystories_core.
+ */
+
+// Include .inc files.
+module_load_include('inc', 'manystories_core', 'includes/manystories_core.settings');
+
+/**
+ * Implements hook_permission().
+ */
+function manystories_core_permission() {
+  $permissions = array(
+    'administer manystories settings' => array(
+      'title' => t('Administer Many Stories settings'),
+      'description' => t('Change settings for the Many Stories app.'),
+    ),
+  );
+
+  return $permissions;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function manystories_core_menu() {
+  $items = array();
+
+  // Many Stories settings page.
+  $items['admin/config/system/manystories'] = array(
+    'title' => 'Many Stories settings',
+    'description' => 'Change settings for Many Stories app',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('manystories_core_settings'),
+    'access arguments' => array('administer manystories settings'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_token_info().
+ * https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_token_info/7
+ */
+function manystories_core_token_info() {
+    $info['tokens']['site']['manystories_core_meta_description'] = array(
+      'name' => t('Manystories - Meta tags description'),
+      'description' => t("The content that will appear as <a href='@meta_url' target='_blank'>meta description</a> on every page. It is best to keep meta descriptions between 150 and 160 characters.", array('@meta_url' => 'https://en.wikipedia.org/wiki/Meta_element#The_description_attribute')),
+    );
+    $info['tokens']['site']['manystories_core_license'] = array(
+      'name' => t('License for Stories'),
+      'description' => t('Default license for Stories.'),
+    );
+
+    $info['tokens']['site']['manystories_google_verification'] = array(
+      'name' => t('Google metatag verification'),
+      'description' => t('Google metatag verification provided by the Google console.'),
+    );
+
+    return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ * https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_tokens/7
+ */
+function manystories_core_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+  $sanitize = !empty($options['sanitize']);
+
+  foreach ($tokens as $name => $original) {
+    switch ($name) {
+      case 'manystories_core_meta_description':
+      $manystories_core_meta_description = variable_get('manystories_core_meta_description', '');
+      $replacements[$original] = check_plain($manystories_core_meta_description);
+      break;
+
+      case 'manystories_core_license':
+      $licenses = manystories_core_licenses();
+      $license_key = variable_get('manystories_core_license', '');
+      $exposed_license = $licenses[$license_key];
+
+      $replacements[$original] = check_plain($exposed_license);
+      break;
+
+      case 'manystories_google_verification':
+      $manystories_google_verification = variable_get('manystories_google_verification', '');
+      $replacements[$original] = check_plain($manystories_google_verification);
+      break;
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Implements hook_restful_resource_alter().
+ * @param  &$resource
+ *   The available restful resource to alter.
+ * @return mix
+ *   If a variable is TRUE then disable the resource.
+ */
+function manystories_core_restful_resource_alter(&$resource){
+  //dpm($resource->getResourceName());
+  $disable_rest = variable_get('manystories_core_rest', "0");
+  if ($resource->getResourceName() == 'stories:1.0' && $disable_rest == '1') {
+    $resource->disable();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function manystories_core_form_hybridauth_additional_info_form_alter(&$form, &$form_state, $form_id) {
+  $form['fset']['terms_of_use'] = array(
+    '#type' => 'checkbox',
+    '#default_value' => '0',
+    '#options' => array(0, 1),
+    '#title' => t('I agree with the <a href="/@terms" target="_blank">Terms of Use</a>', array('@terms' => variable_get('manystories_terms_of_use', ""))),
+    '#required' => TRUE,
+  );
+}
+
+/**
+ * Returns the Embed.ly iframe of a normal iframe from a url
+ * @param  string $url The link of the resource
+ * @param  string $key The embed.ly api key
+ * @return mixed Markup
+ */
+function _manystories_core_embedly_iframe($url, $key){
+  $api_url = "http://api.embed.ly/1/extract?key=" . $key . "&url=".$url."&format=json";
+
+  $json = file_get_contents($api_url);
+  $embedly = json_decode($json, TRUE);
+
+  $http = drupal_http_request($url);
+  $xframe = $http->headers['x-frame-options'];
+
+  // If the link is embeded it has a non empty ['media'] value
+  // If the link does not allow for iframe usage
+  if (array_filter($embedly['media']) || isset($xframe)) {
+
+  return '<a title="embeded media" class="embedly-card" data-card-key="'. $key . '" data-card-recommend="0" data-card-chrome="0" data-card-controls="0" data-card-width="100%" href="' . $url . '"></a><script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>';
+  } else {
+  return '<iframe class="iframe" width="100%" src="' . $url . '"></iframe>';
+  }
+}

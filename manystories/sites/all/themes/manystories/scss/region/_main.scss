@@ -1,0 +1,29 @@
+.main {
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.page-collection,
+.page-taxonomy,
+.page-node {
+  .main {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    color: $text_color;
+    &.with-sidebar {
+      @include add-gutter(0);
+      @include grid-span(9, 4);
+    }
+  }
+}
+
+.main-wrapper {
+  margin: 70px auto $bottom_height auto;
+  max-width: $max_width;
+  overflow: hidden;
+}
+
+.admin-menu .main-wrapper {
+  margin-top: 95px;
+}

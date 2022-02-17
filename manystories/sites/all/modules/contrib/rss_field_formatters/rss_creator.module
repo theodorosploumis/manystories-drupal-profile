@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Provides an RSS creator field formatter for text and user reference fields.
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function rss_creator_field_formatter_info() {
+  return array(
+    'rss_creator' => array(
+      'label' => t('RSS creator'),
+      'field types' => array('text', 'user_reference', 'taxonomy_term_reference'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_prepare_view().
+ */
+function rss_creator_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+  if ($field['type'] == 'user_reference') {
+    user_reference_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, $items, $displays);
+  }
+  elseif ($field['type'] == 'taxonomy_term_reference') {
+    taxonomy_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, $items, $displays);
+  }
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function rss_creator_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  // First item replaces dc:creator element added by core node module.
+  if (isset($entity->rss_elements) && $items) {
+    foreach ($entity->rss_elements as $key => $rss_element) {
+      if ($rss_element['key'] == 'dc:creator') {
+        $item = array_shift($items);
+        $entity->rss_elements[$key]['value'] = rss_creator_element_value($item);
+        break;
+      }
+    }
+  }
+  foreach ($items as $item) {
+    $entity->rss_elements[] = array(
+      'key' => 'dc:creator',
+      'value' => rss_creator_element_value($item),
+    );
+  }
+  return $element;
+}
+
+/**
+ * Helper function to get element value from an item.
+ */
+function rss_creator_element_value($item) {
+  if (isset($item['user'])) {
+    return format_username($item['user']);
+  }
+  if (isset($item['taxonomy_term'])) {
+    return $item['taxonomy_term']->name;
+  }
+  return $item['value'];
+}
